@@ -1,0 +1,29 @@
+body {
+	background-color: black;
+}
+
+h1 {
+	color: white;
+}
+
+.container {
+	color: white;
+}
+
+.side {
+	border: dotted;
+	
+}
+
+.main {
+	border: dotted;
+	
+}
+
+.header {
+	text-align: center;
+}
+
+p {
+	font-size: 100px;
+}
