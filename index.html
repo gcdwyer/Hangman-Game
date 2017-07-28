@@ -11,15 +11,95 @@
     <script src="assets/javascript/game.js">
     </script>
 
-<div class="header">
-<h1>HANGMAN</h1>
+<div id="game">
+    <p>Press any key to begin</p>
 </div>
 
 
-	<div class="container">
+<script type="text/javascript">
+
+    // Creates an array of all letters in the alphabet
+    // var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
+    var correct = 0;
+    var incorrect = 0;
+
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+
+      // Logic to increase incorrect score when wrong letter is selected
+      if (userGuess === "g" || userGuess === "a" || userGuess === "t" || userGuess === "o" || userGuess === "r" || userGuess === "a" || userGuess === "d" || userGuess === "e" ) {
+      	correct++;
+      }
+      	else {
+      		incorrect++;
+      	}
+
+		
+
+
+//       function myFunction() {
+//     var x = document.createElement("IMG");
+//     x.setAttribute("src", "assets/images/hang0.png");
+//     x.setAttribute("width", "304");
+//     x.setAttribute("height", "228");
+//     x.setAttribute("alt", "The Pulpit Rock");
+//     document.body.appendChild(x);
+// }
+
+      // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+        var html =
+          "<p>_ _ _ _ _ _ _ _</p>" +
+          "<p>You chose: " + userGuess + "</p>" +
+          "<p>Wrong choices: " + incorrect + "</p>" +
+		  "<p>Correct choices: " + correct + "</p>";
+
+
+          // "<p>The computer chose: " + computerGuess + "</p>" +
+          // "<p>wins: " + wins + "</p>" +
+          // "<p>losses: " + losses + "</p>" +
+          // "<p>ties: " + ties + "</p>";
+
+        // Set the inner HTML contents of the #game div to our html string
+        document.querySelector("#game").innerHTML = html;
+
+    }
+
+// //calculate word length
+//     calculateWordLength: function() {
+//         return this.computerWord.length;
+//     },
+
+//     // create string with all dashes to print on initial load
+//     createInitialWordToPrint: function() {
+//         var word = "";
+//         for (var i = 0; i < this.computerWordLength; i++) {
+//             word += '_ ';
+//         }
+
+
+        
+      
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+<!-- 	<div class="container">
 		<div class="row">
-		<div class="col-md-2">
-				<!-- Blank -->
+			<div class="col-md-2">
 			</div>
 			<div class="col-md-4 side" style="background-color: blue">
 				<img src='images/TBD.png' alt='Self Picture'>
@@ -33,10 +113,9 @@
 				<p>TBD2</p>
 			</div>
 			<div class="col-md-2">
-				<!-- Blank -->
 			</div>
 		</div>
-
+ -->
 	
 	</div>
   </body>
