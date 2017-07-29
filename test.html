@@ -12,6 +12,9 @@
     <p>Press any key to continue</p>
   </div>
 
+  <div id="image1">
+  </div>
+
   <script type="text/javascript">
 
     // generate a word at random and store it in a variable
@@ -32,24 +35,36 @@
     document.getElementById("game").innerHTML = dashes; 
 
     // Creating variables to hold correct and incorrect values
-    var s;
-    var count = 0;
+
     var correct = 0;
     var incorrect = 0;
     
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
+    var myimage1 = document.getElementById("image1");
+    myimage1.innerHTML="<img src='http://lorempixel.com/400/200' >";
+
 
       // Determines which key was pressed.
       var userGuess = event.key;
-
-      //TBD
-      s = dashes.join(" ");
-      document.getElementById("answer").innerHTML = s;
+      var isGoodGuess = false;
 
       // logic to determine if user guess is right or wrong
+      for (var i = 0; i < word.length; i++) {
+        // console.log(word[i]);
+        // check if idvividual letter matches user guess
+        if (word[i] === userGuess) {
+          console.log("good guess" + userGuess);
+          isGoodGuess = true;
+        } else {
+          console.log("bad guess");
+        }
+      }
+      console.log(isGoodGuess);
+
+
       if (userGuess == "correct") {
-        // Add letter in place of dash
+        correct++;
       } else {
         incorrect++;
       }
