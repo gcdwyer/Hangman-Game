@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hangman</title>
+</head>
+
+<body>
+
+  <div id="game">
+    <p>Press any key to continue</p>
+  </div>
+
+  <script type="text/javascript">
+
+    // generate a word at random and store it in a variable
+    var words = ["monster", "table", "computer", "paper", "phone", "bow"];
+
+    // store random array in a variable
+    var word = words[Math.floor(Math.random()*words.length)];
+
+    // display the # of letters and word in console
+    console.log("The # of letters is: " + word.length);
+    console.log("The word is: " + word);
+
+    // display dashes on screen for letters in word
+    var dashes = "";
+    for (i = 0; i < word.length; i++) {
+      dashes += "_ ";
+    }
+    document.getElementById("game").innerHTML = dashes; 
+
+    // Creating variables to hold correct and incorrect values
+    var s;
+    var count = 0;
+    var correct = 0;
+    var incorrect = 0;
+    
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+
+      //TBD
+      s = dashes.join(" ");
+      document.getElementById("answer").innerHTML = s;
+
+      // logic to determine if user guess is right or wrong
+      if (userGuess == "correct") {
+        // Add letter in place of dash
+      } else {
+        incorrect++;
+      }
+
+      // when incorrect - Add image of hangman
+      if (incorrect === 1) {
+        // Add image1
+      } else if (incorrect === 2) {
+        // Add image 2
+      } else if (incorrect === 3) {
+        // Add image 3
+      } else if (incorrect === 4) {
+        // Add image 4
+      } else if (incorrect === 5) {
+        // Add image 5
+      } else if (incorrect === 6) {
+        // Add image 6
+      } else {
+        // Add image 7
+      }
+
+        // Creating a variable to hold our new HTML
+        // var html = "<p>You chose: " + userGuess + "</p>"; 
+
+        // // Set the inner HTML contents of the #game div to our html string
+        // document.querySelector("#game").innerHTML = html;
+      
+    };
+  </script>
+
+</body>
+
+</html>

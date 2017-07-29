@@ -11,6 +11,37 @@
       .wrapper {
         color: white;
       }
+
+      body {
+        background-color: orange;
+      }
+
+      h1 {
+        color: white;
+      }
+
+      .container {
+        color: white;
+      }
+
+      .side {
+        border: dotted;
+        
+      }
+
+      .main {
+        border: dotted;
+        
+      }
+
+      .header {
+        text-align: center;
+      }
+
+      p {
+        font-size: 100px;
+      }
+
     </style>
 
   </head>
@@ -50,6 +81,13 @@ if(correct < word.length) {
 // prompt the user to guess a letter
 
 document.write("Guess a letter" + "<br>");
+
+
+// addes dashes for word letters
+
+for (var i = 0; i < word.length; i++){
+  word[i] = "_ ";
+}
 
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
