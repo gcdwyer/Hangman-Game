@@ -35,62 +35,56 @@
     document.getElementById("game").innerHTML = dashes; 
 
     // Creating variables to hold correct and incorrect values
-
     var correct = 0;
     var incorrect = 0;
     
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
-    var myimage1 = document.getElementById("image1");
-    myimage1.innerHTML="<img src='http://lorempixel.com/400/200' >";
+
+    // var myimage1 = document.getElementById("image1");
+    // myimage1.innerHTML="<img src='http://lorempixel.com/100/100' >";
 
 
       // Determines which key was pressed.
       var userGuess = event.key;
       var isGoodGuess = false;
+      var chances = 7;
 
       // logic to determine if user guess is right or wrong
-      for (var i = 0; i < word.length; i++) {
-        // console.log(word[i]);
+      for (var j = 0; j < word.length; j++) {
+
         // check if idvividual letter matches user guess
-        if (word[i] === userGuess) {
-          console.log("good guess" + userGuess);
+        if (word[j] === userGuess) {
+          console.log("Good " + j);
           isGoodGuess = true;
         } else {
-          console.log("bad guess");
-        }
+          console.log("Bad " + j);
+          }
       }
       console.log(isGoodGuess);
 
+      //Decrease lives on incorrect answer
+      if (isGoodGuess === false) {
+        chances--;
+        }
 
-      if (userGuess == "correct") {
-        correct++;
-      } else {
-        incorrect++;
-      }
+      console.log("lives: " + chances);  
 
-      // when incorrect - Add image of hangman
-      if (incorrect === 1) {
-        // Add image1
-      } else if (incorrect === 2) {
-        // Add image 2
-      } else if (incorrect === 3) {
-        // Add image 3
-      } else if (incorrect === 4) {
-        // Add image 4
-      } else if (incorrect === 5) {
-        // Add image 5
-      } else if (incorrect === 6) {
-        // Add image 6
-      } else {
-        // Add image 7
-      }
+
+      // if (!isGoodGuess === true) {
+      //   chances--;
+      // }  
+
 
         // Creating a variable to hold our new HTML
-        // var html = "<p>You chose: " + userGuess + "</p>"; 
+        var html = 
+        "<p>You chose: " + userGuess + "</p>" +
+        "<p>Correct guesses: " + isGoodGuess + "</p>" +
+        "<p>Lives Left: " + chances + "</p>" +
+        "<img src='assets/images/hang0.png' >"; 
 
-        // // Set the inner HTML contents of the #game div to our html string
-        // document.querySelector("#game").innerHTML = html;
+        // Set the inner HTML contents of the #game div to our html string
+        document.querySelector("#game").innerHTML = html;
       
     };
   </script>
