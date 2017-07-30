@@ -7,49 +7,87 @@
 </head>
 
 <body>
+  <h1>Hangman</h1>
+  <h4>Guess letters in the word to solve</h4>
 
   <div id="game">
-    <p>Press any key to continue</p>
   </div>
 
-  <div id="image1">
+  <div id="image">
   </div>
+
+  <div id="result">
+  </div>
+
+  <div id="empty">
+  </div>
+
+  <div id="test">
+  </div>
+
+
 
   <script type="text/javascript">
 
     // generate a word at random and store it in a variable
     var words = ["monster", "table", "computer", "paper", "phone", "bow"];
 
+    // sets number of lives
+    var chances = 7;
+
+    // sets the number of correct guesses
+    var correctGuesses = 0;
+
     // store random array in a variable
     var word = words[Math.floor(Math.random()*words.length)];
 
-    // display the # of letters and word in console
+    // display the # of letters and word in consolea
     console.log("The # of letters is: " + word.length);
     console.log("The word is: " + word);
+
+    //displays empty hangman
+    var hang1 = "<img src='assets/images/hang1.png' >";
+    document.querySelector("#empty").innerHTML = hang1
+
+
 
     // display dashes on screen for letters in word
     var dashes = "";
     for (i = 0; i < word.length; i++) {
       dashes += "_ ";
     }
-    document.getElementById("game").innerHTML = dashes; 
+    document.getElementById("test").innerHTML = dashes; 
 
+
+
+
+
+    
+
+
+
+
+
+
+ 
     // Creating variables to hold correct and incorrect values
     var correct = 0;
     var incorrect = 0;
-    
+
+   
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
 
+    // adds image to html
     // var myimage1 = document.getElementById("image1");
     // myimage1.innerHTML="<img src='http://lorempixel.com/100/100' >";
-
 
       // Determines which key was pressed.
       var userGuess = event.key;
       var isGoodGuess = false;
-      var chances = 7;
 
+      
+      
       // logic to determine if user guess is right or wrong
       for (var j = 0; j < word.length; j++) {
 
@@ -66,25 +104,61 @@
       //Decrease lives on incorrect answer
       if (isGoodGuess === false) {
         chances--;
+        console.log("add hang");
+
+        } else {
+          correctGuesses++;
         }
 
+
       console.log("lives: " + chances);  
-
-
-      // if (!isGoodGuess === true) {
-      //   chances--;
-      // }  
+      var newLives = chances;
 
 
         // Creating a variable to hold our new HTML
-        var html = 
+        var stats = 
         "<p>You chose: " + userGuess + "</p>" +
-        "<p>Correct guesses: " + isGoodGuess + "</p>" +
-        "<p>Lives Left: " + chances + "</p>" +
-        "<img src='assets/images/hang0.png' >"; 
+        "<p>Correct guess: " + correctGuesses + "</p>" +
+        "<p>Lives Left: " + chances + "</p>" + 
+        "<p>" + dashes + "</p>";
 
         // Set the inner HTML contents of the #game div to our html string
-        document.querySelector("#game").innerHTML = html;
+        document.querySelector("#game").innerHTML = stats;
+
+        //sets image and result variables
+        var hang1 = "<img src='assets/images/hang1.png' >";
+        var hang2 = "<img src='assets/images/hang2.png' >";
+        var hang3 = "<img src='assets/images/hang3.png' >";
+        var hang4 = "<img src='assets/images/hang4.png' >";
+        var hang5 = "<img src='assets/images/hang5.png' >";
+        var hang6 = "<img src='assets/images/hang6.png' >";
+        var hang7 = "<img src='assets/images/hang7.png' >";
+        var lost = "YOU LOSE!!!";
+        var win = "YOU WIN!!!";
+
+        if (chances === 7) {
+          document.querySelector("#image").innerHTML = hang1;
+        } else if (chances === 6) {
+          document.querySelector("#image").innerHTML = hang2;
+        } else if (chances === 5) {
+          document.querySelector("#image").innerHTML = hang3;
+        } else if (chances === 4) {
+          document.querySelector("#image").innerHTML = hang4;
+        } else if (chances === 3) {
+          document.querySelector("#image").innerHTML = hang5;
+        } else if (chances === 2) {
+          document.querySelector("#image").innerHTML = hang6;
+        } else if (chances === 1) {
+          document.querySelector("#image").innerHTML = hang7;
+        } else {
+          document.querySelector("#result").innerHTML = lost;
+        } 
+
+        // logic to determin if correct guesses equal the word length
+        if (correctGuesses === word.length) {
+          document.querySelector("#result").innerHTML = win;
+        }
+        
       
     };
   </script>
