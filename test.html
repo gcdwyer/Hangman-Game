@@ -57,7 +57,7 @@
     var dashes = [];
     for (i = 0; i < word.length; i++) {
 
-      dashes[i] = "_";
+      dashes[i] = "_ ";
     }
     // document.getElementById("test").innerHTML = dashes; 
 
@@ -66,7 +66,7 @@
     var correct = 0;
     var incorrect = 0;
 
-   
+   // ===================== FUNCTION ============================================
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
 
@@ -74,10 +74,12 @@
     // var myimage1 = document.getElementById("image1");
     // myimage1.innerHTML="<img src='http://lorempixel.com/100/100' >";
 
-      // Determines which key was pressed.
+      // set userguess to key pressed
       var userGuess = event.key;
+
+      // set guess to false until logic is ran
       var isGoodGuess = false;
-      var correctLetter = "";
+
       var correctLetterIndex = -1;
       
       // logic to determine if user guess is right or wrong
@@ -93,7 +95,7 @@
           console.log("Bad " + j);
           }
       }
-      console.log(isGoodGuess);
+      console.log("Good guess: " + isGoodGuess);
 
       //Decrease lives on incorrect answer
       if (isGoodGuess === false) {
@@ -116,12 +118,12 @@
         "<p>";
 
         for (var j = 0; j < dashes.length; j++) {
-          stats=stats + dashes[j];
+          stats = stats + dashes[j];
           }
 
-        stats= stats + "</p>";  
+        stats = stats + "</p>";  
 
-        // Set the inner HTML contents of the #game div to our html string
+        // Set the inner HTML contents of the #game div to html string
         document.querySelector("#game").innerHTML = stats;
 
         //sets image and result variables
@@ -156,6 +158,15 @@
         // logic to determin if correct guesses equal the word length
         if (correctGuesses === word.length) {
           document.querySelector("#result").innerHTML = win;
+        }
+
+        // if chances = 0 OR correctGuesses = word.length  --> reset game
+        if (chances === 0 || correctGuesses === word.length) {
+          console.log("RESET");
+          chances = 7;
+          console.log(chances);
+          word = words[Math.floor(Math.random()*words.length)];
+          console.log(word);
         }
         
       
