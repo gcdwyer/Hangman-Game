@@ -46,28 +46,20 @@
     console.log("The word is: " + word);
 
     //displays empty hangman
-    var hang1 = "<img src='assets/images/hang1.png' >";
-    document.querySelector("#empty").innerHTML = hang1
+    // var hang1 = "<img src='assets/images/hang1.png' >";
+    // document.querySelector("#empty").innerHTML = hang1
 
 
 
     // display dashes on screen for letters in word
-    var dashes = "";
+    //  make array the same length of the word.length
+
+    var dashes = [];
     for (i = 0; i < word.length; i++) {
-      dashes += "_ ";
+
+      dashes[i] = "_";
     }
-    document.getElementById("test").innerHTML = dashes; 
-
-
-
-
-
-    
-
-
-
-
-
+    // document.getElementById("test").innerHTML = dashes; 
 
  
     // Creating variables to hold correct and incorrect values
@@ -85,8 +77,8 @@
       // Determines which key was pressed.
       var userGuess = event.key;
       var isGoodGuess = false;
-
-      
+      var correctLetter = "";
+      var correctLetterIndex = -1;
       
       // logic to determine if user guess is right or wrong
       for (var j = 0; j < word.length; j++) {
@@ -95,6 +87,8 @@
         if (word[j] === userGuess) {
           console.log("Good " + j);
           isGoodGuess = true;
+          correctLetterIndex = j;
+          dashes[j] = word[j];
         } else {
           console.log("Bad " + j);
           }
@@ -105,7 +99,6 @@
       if (isGoodGuess === false) {
         chances--;
         console.log("add hang");
-
         } else {
           correctGuesses++;
         }
@@ -120,7 +113,13 @@
         "<p>You chose: " + userGuess + "</p>" +
         "<p>Correct guess: " + correctGuesses + "</p>" +
         "<p>Lives Left: " + chances + "</p>" + 
-        "<p>" + dashes + "</p>";
+        "<p>";
+
+        for (var j = 0; j < dashes.length; j++) {
+          stats=stats + dashes[j];
+          }
+
+        stats= stats + "</p>";  
 
         // Set the inner HTML contents of the #game div to our html string
         document.querySelector("#game").innerHTML = stats;
